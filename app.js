@@ -9,21 +9,7 @@ GAME RULES:
 
 */
 var score, roundScore, activePlayer;
-score = [0,0];
-roundScore = 0;
-activePlayer = 0;
-
-
-
-document.querySelector('.dice').style.display ='none';
-
-// Setting the values to 0 Using the GetElementsByID
-//Recap : 1.while slecting an elements we don't use CSS selection Like  querySelector
-//        2.It works inly with ID's
-document.getElementById('score-0').textContent = '0';
-document.getElementById('score-1').textContent = '0';
-document.getElementById('current-0').textContent = '0';
-document.getElementById('current-1').textContent = '0';
+init();
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
 
@@ -71,6 +57,7 @@ document.querySelector('.btn-hold').addEventListener('click', function(){
 
 
 
+
 function nextPlayer(){
     activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
     roundScore = 0;
@@ -86,9 +73,34 @@ function nextPlayer(){
     document.querySelector('.dice').style.display ='none';
 };
 
+//............................................... Passing the value
+document.querySelector('.btn-new').addEventListener('click', init);
 
 
 
+function init(){
+    score = [0,0];
+roundScore = 0;
+activePlayer = 0;
+document.querySelector('.dice').style.display ='none';
+
+// Setting the values to 0 Using the GetElementsByID
+//Recap : 1.while slecting an elements we don't use CSS selection Like  querySelector
+//        2.It works inly with ID's
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
+document.getElementById('name-0').textContent ='Player 1';
+document.getElementById('name-1').textContent ='Player 2';
+document.querySelector('.player-0-panel').classList.remove('winner');
+document.querySelector('.player-1-panel').classList.remove('winner');
+document.querySelector('.player-0-panel').classList.remove('active');
+document.querySelector('.player-1-panel').classList.remove('active');
+document.querySelector('.player-1-panel').classList.add('active');
+
+
+}
 
 
 
