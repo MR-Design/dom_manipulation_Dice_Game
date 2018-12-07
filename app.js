@@ -17,6 +17,13 @@ ActivePlayer = 1;
 
 document.querySelector('.dice').style.display ='none';
 
+// Setting the values to 0 Using the GetElementsByID
+//Recap : 1.while slecting an elements we don't use CSS selection Like  querySelector
+//        2.It works inly with ID's
+document.getElementById('score-0').textContent = '0';
+document.getElementById('score-1').textContent = '0';
+document.getElementById('current-0').textContent = '0';
+document.getElementById('current-1').textContent = '0';
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
 
