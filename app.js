@@ -11,7 +11,7 @@ GAME RULES:
 var score, roundScore, activePlayer;
 score = [0,0];
 roundScore = 0;
-ActivePlayer = 1;
+activePlayer = 0;
 
 
 
@@ -39,28 +39,52 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     if (dice !== 1){
         //Add score
         roundScore += dice;
-        document.querySelector('#current-'+activePlayer).textContent =roundScore;
+        document.querySelector('#current-'+activePlayer).textContent = roundScore;
     } else{
         //Next Player
-        activePlayer ===0 ? activePlayer =1 : activePlayer =0;
-        roundScore =0;
-
-        document.getElementById('current-0').textContent = '0';
-        document.getElementById('current-1').textContent = '0';
-
-        //classList Add remove ... Classes
-        // togle add a class if does't existe and remove it if it existe
-        document.querySelector('.player-0-panel').classList.toggle('active');
-        document.querySelector('.player-1-panel').classList.toggle('active');
-
-        document.querySelector('.dice').style.display ='none';
+        nextPlayer();
 
 
     }
 });
 
+document.querySelector('.btn-hold').addEventListener('click', function(){
+    //Add current score to Glabal Score
+    score[activePlayer] += roundScore;
+
+    //Update the UI
+    document.querySelector('#score-' + activePlayer).textContent =score[activePlayer];
+
+    //Check if the Player Won the Game
+    if (score[activePlayer] >=100){
+        document.querySelector('#name-'+ activePlayer).textContent ='Winner!';
+        document.querySelector('.dice').style.display ='none';
+        document.querySelector('.player-'+ activePlayer +'-panel').classList.add('winner');
+        document.querySelector('.player-'+ activePlayer +'-panel').classList.remove('active');
+    } else{
+        //Next Player
+        nextPlayer();
+    }
+})
 
 
+
+
+
+function nextPlayer(){
+    activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+    roundScore = 0;
+
+    document.getElementById('current-0').textContent = '0';
+    document.getElementById('current-1').textContent = '0';
+
+    //classList Add remove ... Classes
+    // togle add a class if does't existe and remove it if it existe
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+
+    document.querySelector('.dice').style.display ='none';
+};
 
 
 
